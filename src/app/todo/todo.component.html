@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+      <div class="col-5 mx-3">
+        <h3 class="bg-primary text-white p-3">{{ getName() }}'s list</h3>
+        <div class="input-group mb-3">
+          <input
+            #input
+            type="text"
+            class="form-control"
+            (keyup.enter)="addItem(input.value)"
+            input.value=""
+          />
+          <!-- (blur)="addItem(input.value)" -->
+          <button
+            class="btn btn-outline-primary"
+            (click)="addItem(input.value); input.value = ''"
+          >
+            Add
+          </button>
+        </div>
+        <h1>{{ displayAll }}</h1>
+        <div class="form-check mb-3">
+          <input
+            type="checkbox"
+            [(ngModel)]="displayAll"
+            class="form-check-input"
+            id="displayAll"
+            
+          />
+          <label for="displayAll" class="form-check-label">Show All</label>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody #tbody>
+            <tr
+              (click)="ChangeColor(tbody, tr.style)"
+              #tr
+              *ngFor="let item of getItems(); let i = index"
+            >
+              <td>{{ i + 1 }}</td>
+              <td (click)="getItem(inde,des,i)">{{ item.description }}</td>
+              <td (click)="ChangeTrueFalse(tbody, i )" *ngIf="item.action">Yes</td>
+              <td (click)="ChangeTrueFalse(tbody, i )" *ngIf="!item.action">No</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        
+        <!-- <ul>
+              <li *ngFor="let item of items" >
+                  {{item}}
+              </li>
+          </ul> -->
+      </div>
+      <div class="col-5 p-5">
+        <input 
+        #inde
+    type="text"
+    class="form-control mb-5"
+    input.value=""
+  hidden />
+        <input 
+        #des
+    type="text"
+    class="form-control mb-5"
+    input.value=""
+  />
+  <div class="form-check mb-5
+  ">
+    <input 
+    #act
+      type="checkbox"
+      [(ngModel)]="acti"
+      class="form-check-input"
+      id="displayAll"
+    />
+    <label for="displayAll" class="form-check-label">Action</label>
+  </div>
+  <button (click)="Update(inde,des)" class="btn btn-primary">Update</button>
+
+    </div>
+    </div>
+
+       
+  </div>
